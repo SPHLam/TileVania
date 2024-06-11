@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     Rigidbody2D myRigidBody2D;
     SpriteRenderer mySpriteRenderer;
+    Animator myAnimator;
 
     [SerializeField] float moveSpeed = 5f;
 
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     {
         myRigidBody2D = GetComponent<Rigidbody2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+        myAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -33,10 +35,16 @@ public class PlayerMovement : MonoBehaviour
         if (moveInput.x > 0)
         {
             mySpriteRenderer.flipX = false;
+            myAnimator.SetBool("isRunning", true);
         }
         else if (moveInput.x < 0)
         {
             mySpriteRenderer.flipX = true;
+            myAnimator.SetBool("isRunning", true);
+        }
+        else
+        {
+            myAnimator.SetBool("isRunning", false);
         }
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, myRigidBody2D.velocity.y);
         myRigidBody2D.velocity = playerVelocity;
