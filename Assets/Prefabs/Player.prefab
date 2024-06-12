@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6506050456740310128}
   - component: {fileID: 8092001326582220897}
   - component: {fileID: 2163355417836719759}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -229976733
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 1191597061, guid: c8d3af5308d67414c93f9bdd3c08b2c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a206eb50ed7a428449aa42c35f266938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 7.5
+  jumpForce: 15
 --- !u!61 &6506050456740310128
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,7 +184,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -192,7 +194,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &2163355417836719759
 MonoBehaviour:
