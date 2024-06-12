@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Run();
+        ClimbLadder();
     }
 
     void OnMove(InputValue inputValue)
@@ -62,5 +63,14 @@ public class PlayerMovement : MonoBehaviour
         }
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, myRigidBody2D.velocity.y);
         myRigidBody2D.velocity = playerVelocity;
+    }
+
+    void ClimbLadder()
+    {
+        if (myCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")))
+        {
+            Vector2 climbVelocity = new Vector2(myRigidBody2D.velocity.x, moveInput.y * moveSpeed);
+            myRigidBody2D.velocity = climbVelocity;
+        }
     }
 }
