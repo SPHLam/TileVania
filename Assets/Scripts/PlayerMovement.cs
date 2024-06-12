@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpForce = 50f;
+    float gravityScaleAtStart;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         myAnimator = GetComponent<Animator>();
         myCollider = GetComponent<BoxCollider2D>();
+        gravityScaleAtStart = myRigidBody2D.gravityScale;
     }
 
     void Update()
@@ -69,8 +71,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (myCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")))
         {
+            myRigidBody2D.gravityScale = 0;
             Vector2 climbVelocity = new Vector2(myRigidBody2D.velocity.x, moveInput.y * moveSpeed);
             myRigidBody2D.velocity = climbVelocity;
+        }
+        else
+        {
+            myRigidBody2D.gravityScale = gravityScaleAtStart;
         }
     }
 }
