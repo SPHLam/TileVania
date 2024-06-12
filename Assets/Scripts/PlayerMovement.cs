@@ -71,12 +71,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if (myCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")))
         {
+            if (moveInput.y != 0)
+            {
+                myAnimator.SetBool("isClimbing", true);
+            }
+            else
+            {
+                myAnimator.SetBool("isClimbing", false);
+            }
+           
             myRigidBody2D.gravityScale = 0;
             Vector2 climbVelocity = new Vector2(myRigidBody2D.velocity.x, moveInput.y * moveSpeed);
             myRigidBody2D.velocity = climbVelocity;
         }
         else
         {
+            myAnimator.SetBool("isClimbing", false);
             myRigidBody2D.gravityScale = gravityScaleAtStart;
         }
     }
