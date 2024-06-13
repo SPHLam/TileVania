@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpForce = 50f;
+    Vector2 deathVelocity = new Vector2(0f, 10f);
     float gravityScaleAtStart;
     bool isAlive = true;
 
@@ -110,6 +111,10 @@ public class PlayerMovement : MonoBehaviour
     void Die()
     {
         if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
             isAlive = false;
+            myAnimator.SetTrigger("Death");
+            myRigidBody2D.velocity = deathVelocity;
+        }
     }
 }
