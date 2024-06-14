@@ -17,7 +17,7 @@ TagManager:
   - Background
   - Bounce
   - Enemy
-  - 
+  - Hazards
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Ladder
     uniqueID: 2499992785
+    locked: 0
+  - name: Hazards
+    uniqueID: 668766803
     locked: 0
   - name: Enemy
     uniqueID: 2361060153

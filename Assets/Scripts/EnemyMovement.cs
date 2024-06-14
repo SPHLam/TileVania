@@ -27,11 +27,11 @@ public class EnemyMovement : MonoBehaviour
     {
         if (moveSpeed > 0)
         {
-            mySpriteRenderer.flipX = false;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
-            mySpriteRenderer.flipX = true;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         myRigidBody.velocity = new Vector2(moveSpeed, 0f);
     }
