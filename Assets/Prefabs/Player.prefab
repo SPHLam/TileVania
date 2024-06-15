@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7.5
   jumpForce: 15
+  bullet: {fileID: 6793291783637816700, guid: 313fd6b702ca61242a44596970cc30b2, type: 3}
 --- !u!61 &6506050456740310128
 BoxCollider2D:
   m_ObjectHideFlags: 0
