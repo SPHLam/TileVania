@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
         myRigidBody.velocity = new Vector2(bulletSpeed, 0f); 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) // hitting enemy
     {
         if (collision.tag == "Enemy")
         {
@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) // hitting the wall
     {
         Destroy(this.gameObject);
     }
