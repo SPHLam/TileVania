@@ -8,13 +8,14 @@ public class PlayerMovement : MonoBehaviour
 {
     Vector2 moveInput;
     Rigidbody2D myRigidBody2D;
-    SpriteRenderer mySpriteRenderer;
     Animator myAnimator;
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
 
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpForce = 50f;
+    [SerializeField] GameObject bullet;
+    GameObject gun;
     Vector2 deathVelocity = new Vector2(0f, 10f);
     float gravityScaleAtStart;
     bool isAlive = true;
@@ -22,11 +23,12 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         myRigidBody2D = GetComponent<Rigidbody2D>();
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
         myAnimator = GetComponent<Animator>();
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
         gravityScaleAtStart = myRigidBody2D.gravityScale;
+
+        gun = transform.GetChild(0).gameObject;
     }
 
     void Update()
@@ -64,16 +66,28 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void OnFire(InputValue inputValue)
+    {
+        if (!isAlive)
+        {
+            return;
+        }
+        if (inputValue.isPressed)
+        {
+            Instantiate(bullet, gun.transform.position, Quaternion.identity);
+        }
+    }
+
     void Run()
     {
         if (moveInput.x > 0)
         {
-            mySpriteRenderer.flipX = false;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             myAnimator.SetBool("isRunning", true);
         }
         else if (moveInput.x < 0)
         {
-            mySpriteRenderer.flipX = true;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
             myAnimator.SetBool("isRunning", true);
         }
         else
